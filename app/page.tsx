@@ -2,38 +2,37 @@ import Link from "next/link"
 
 export default function Home() {
 	return (
-		<main className="flex min-h-screen flex-col items-center justify-between p-24">
-			<div className="container mx-auto p-4">
-				<h1 className="text-3xl font-bold">WELCOME</h1>
-				<ul
-					role="list"
-					className="divide-y divide-gray-100"
-				>
-					<li className="flex justify-between gap-x-6 py-2">
-						<Link
-							href="/todo"
-							className="text-blue-500 underline"
-						>
-							TODO LIST
-						</Link>
-					</li>
-					<li className="flex justify-between gap-x-6 py-2">
-						<Link
-							href="/weather"
-							className="text-blue-500 underline"
-						>
-							WEATHER
-						</Link>
-					</li>
-					<li className="flex justify-between gap-x-6 py-2">
-						<Link
-							href="/calculator"
-							className="text-blue-500 underline"
-						>
-							CALCULATOR
-						</Link>
-					</li>
-				</ul>
+		<main className="flex min-h-screen items-center justify-center bg-green-50 p-8">
+			<div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md text-center">
+				<h1 className="text-4xl font-bold text-green-700 mb-8">WELCOME</h1>
+				<nav className="text-lg text-green-600">
+					<ul>
+						<li className="py-4">
+							<Link
+								className="hover:text-green-800"
+								href="/todo"
+							>
+								TODO LIST
+							</Link>
+						</li>
+						<li className="py-4">
+							<Link
+								className="hover:text-green-800"
+								href="/weather"
+							>
+								WEATHER
+							</Link>
+						</li>
+						<li className="py-4">
+							<Link
+								className="hover:text-green-800"
+								href="/calculator"
+							>
+								CALCULATOR
+							</Link>
+						</li>
+					</ul>
+				</nav>
 			</div>
 		</main>
 	)
