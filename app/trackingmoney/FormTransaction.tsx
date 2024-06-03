@@ -35,7 +35,7 @@ const FormTransaction: React.FC<ExpenseFormProps> = ({ fetchData }) => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="mx-auto max-w-sm bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
+			className="mx-auto max-w-sm bg-green-50 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
 		>
 			<h2 className="text-2xl font-bold text-gray-800 mb-4">Add Transaction</h2>
 			<div className="mb-4">
@@ -51,7 +51,7 @@ const FormTransaction: React.FC<ExpenseFormProps> = ({ fetchData }) => {
 					value={amount ?? ""}
 					onChange={(e) => setAmount(parseFloat(e.target.value))}
 					placeholder="Enter amount"
-					className="w-full p-2 border border-gray-300 rounded-md"
+					className="w-full p-2 border border-green-300 rounded-md"
 				/>
 			</div>
 			<div className="mb-4">
@@ -67,7 +67,7 @@ const FormTransaction: React.FC<ExpenseFormProps> = ({ fetchData }) => {
 					value={description}
 					onChange={(e) => setDescription(e.target.value)}
 					placeholder="Enter description"
-					className="w-full p-2 border border-gray-300 rounded-md"
+					className="w-full p-2 border border-green-300 rounded-md"
 				/>
 			</div>
 			<div className="mb-4">
@@ -81,7 +81,7 @@ const FormTransaction: React.FC<ExpenseFormProps> = ({ fetchData }) => {
 					id="type"
 					value={type}
 					onChange={(e) => setType(e.target.value)}
-					className="w-full p-2 border border-gray-300 rounded-md"
+					className="w-full p-2 border border-green-300 rounded-md"
 				>
 					<option value="">Select type</option>
 					<option value="income">Income</option>
@@ -90,7 +90,7 @@ const FormTransaction: React.FC<ExpenseFormProps> = ({ fetchData }) => {
 			</div>
 			<button
 				type="submit"
-				className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+				className="w-full bg-green-500 text-white py-2 rounded-md hover:bg-green-600"
 			>
 				Add Transaction
 			</button>
