@@ -8,7 +8,7 @@ interface TodoItemProps {
 
 export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
 	return (
-		<li className="flex justify-between items-center bg-white p-4 rounded-md shadow-sm">
+		<li className="flex justify-between items-center bg-green-100 p-4 rounded-md shadow-sm">
 			<span className={`${todo.completed ? "line-through text-gray-400" : ""} flex-grow`}>{todo.text}</span>
 			<div className="flex space-x-2">
 				<button
