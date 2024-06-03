@@ -2,7 +2,7 @@
 import React, { useState } from "react"
 import Link from "next/link"
 
-import { fetchWeatherbyCity } from "@/app/lib/api"
+import { fetchWeatherbyCity } from "@/app/lib/weatherAPI"
 
 function WeatherPage() {
 	const [city, setCity] = useState(null)

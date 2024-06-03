@@ -31,6 +31,14 @@ export default function Home() {
 								CALCULATOR
 							</Link>
 						</li>
+						<li className="py-4">
+							<Link
+								className="hover:text-green-800"
+								href="/trackingmoney"
+							>
+								TRACKING MONEY
+							</Link>
+						</li>
 					</ul>
 				</nav>
 			</div>
