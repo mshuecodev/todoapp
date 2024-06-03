@@ -1,12 +1,9 @@
 "use client"
 import React, { useState, useEffect } from "react"
-
-import { fetchTransactions, addTransaction } from "@/app/lib/trackingAPI"
-
+import { fetchTransactions } from "@/app/lib/trackingAPI"
 import FormTransaction from "./FormTransaction"
 import TransactionList from "./TransactionList"
 import Summary from "./Summary"
-
 import { Transaction } from "@/app/types"
 
 const Home: React.FC = () => {
@@ -26,8 +23,8 @@ const Home: React.FC = () => {
 	const totalExpenses = transactions.filter((transaction) => transaction.transactionType === "expense").reduce((acc, curr) => acc + curr.amount, 0)
 
 	return (
-		<div className="min-h-screen bg-green-50 py-6 sm:py-12">
-			<div className="container mx-auto p-4 max-w-md">
+		<div className="flex flex-col items-center justify-center min-h-screen bg-green-50 py-6 sm:py-12">
+			<div className="max-w-md w-full p-4">
 				<h1 className="text-3xl font-bold text-center text-gray-900 mb-6">Track Money</h1>
 				<FormTransaction fetchData={fetchData} />
 				<TransactionList transactions={transactions} />
