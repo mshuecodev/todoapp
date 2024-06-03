@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react"
 import { Todo } from "@/app/types"
 import { fetchTodos, addTodo, toggleTodo, deleteTodo } from "@/app/lib/api"
-import TodoItem from "./TodoItem"
+import TodoItem from "./todoItem"
 
 const TodoList: React.FC = () => {
 	const [todos, setTodos] = useState<Todo[]>([])

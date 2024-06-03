@@ -25,6 +25,14 @@ export default function Home() {
 							WEATHER
 						</Link>
 					</li>
+					<li className="flex justify-between gap-x-6 py-2">
+						<Link
+							href="/calculator"
+							className="text-blue-500 underline"
+						>
+							CALCULATOR
+						</Link>
+					</li>
 				</ul>
 			</div>
 		</main>
