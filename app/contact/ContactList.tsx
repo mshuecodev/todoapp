@@ -1,14 +1,8 @@
-interface IContact {
-	_id: string
-	name: string
-	email: string
-	phone: string
-	address: string
-}
+import { Contact } from "@/app/types"
 
 interface IContactListProps {
-	contacts: IContact[]
-	onEdit: (contact: IContact) => void
+	contacts: Contact[]
+	onEdit: (contact: Contact) => void
 	onDelete: (id: string) => void
 }
 

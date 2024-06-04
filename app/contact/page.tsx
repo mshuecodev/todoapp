@@ -9,14 +9,17 @@ import { fetchContact, addContact, toggleContact, deleteContact } from "@/app/li
 export default function Home() {
 	const [contacts, setContacts] = useState<Contact[]>([])
 	const [selectedContact, setSelectedContact] = useState<Contact | null>(null)
+	const [isEdit, setEdit] = useState(false)
 
-	const handleSave = () => {
-		fetchData()
+	const handleSave = async () => {
+		await fetchData()
 		setSelectedContact(null)
+		setEdit(false)
 	}
 
 	const handleEdit = (contact: Contact) => {
 		setSelectedContact(contact)
+		setEdit(true)
 	}
 
 	const handleDelete = async (id: string) => {
@@ -40,10 +43,10 @@ export default function Home() {
 				<div className="bg-white p-6 rounded-lg shadow-lg mb-8">
 					<ContactForm
 						contact={selectedContact}
+						setSelectedContact={setSelectedContact}
 						onSave={handleSave}
+						isEdit={isEdit}
 					/>
-				</div>
-				<div className="bg-white p-6 rounded-lg shadow-lg">
 					<ContactList
 						contacts={contacts}
 						onEdit={handleEdit}
