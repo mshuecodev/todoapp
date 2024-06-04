@@ -21,7 +21,6 @@ const TodoList: React.FC = () => {
 	}
 
 	const handleDeleteTodo = async (id: string) => {
-		console.log(id)
 		await deleteTodo(id)
 		setTodos(todos.filter((todo) => todo._id !== id))
 	}

@@ -39,6 +39,14 @@ export default function Home() {
 								TRACKING MONEY
 							</Link>
 						</li>
+						<li className="py-4">
+							<Link
+								className="hover:text-green-800"
+								href="/contact"
+							>
+								CONTACT APP
+							</Link>
+						</li>
 					</ul>
 				</nav>
 			</div>

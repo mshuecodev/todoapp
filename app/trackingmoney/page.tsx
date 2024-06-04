@@ -19,7 +19,6 @@ const Home: React.FC = () => {
 	}, [])
 
 	const totalIncome = transactions.filter((transaction) => transaction.transactionType === "income").reduce((acc, curr) => acc + curr.amount, 0)
-
 	const totalExpenses = transactions.filter((transaction) => transaction.transactionType === "expense").reduce((acc, curr) => acc + curr.amount, 0)
 
 	return (
