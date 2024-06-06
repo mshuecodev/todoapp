@@ -47,6 +47,14 @@ export default function Home() {
 								CONTACT APP
 							</Link>
 						</li>
+						<li className="py-4">
+							<Link
+								className="hover:text-green-800"
+								href="/chats"
+							>
+								CHAT APP
+							</Link>
+						</li>
 					</ul>
 				</nav>
 			</div>
