@@ -1,8 +1,21 @@
-import { GetServerSideProps } from "next"
-import { getSession } from "next-auth/react"
+"use client"
+
 import Link from "next/link"
+import { useSession, signOut } from "next-auth/react"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
+	const { data: session, status } = useSession()
+	const router = useRouter()
+
+	if (status === "loading") {
+		return <div>Loading...</div>
+	}
+
+	if (!session) {
+		console.log("session", session)
+		router.push("/auth/signin")
+	}
 	return (
 		<main className="flex min-h-screen items-center justify-center bg-green-50 p-8">
 			<div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md text-center">
@@ -59,24 +72,13 @@ export default function Home() {
 						</li>
 					</ul>
 				</nav>
+				<button
+					onClick={() => signOut({ callbackUrl: "/" })}
+					className="mt-8 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
+				>
+					Logout
+				</button>
 			</div>
 		</main>
 	)
-}
-
-export const getSerSideProps: GetServerSideProps = async (context) => {
-	const session = await getSession(context)
-
-	if (!session) {
-		return {
-			redirect: {
-				destination: "/auth/signin",
-				permanent: false
-			}
-		}
-	}
-
-	return {
-		props: { session }
-	}
 }

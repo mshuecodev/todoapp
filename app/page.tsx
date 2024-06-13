@@ -1,13 +1,13 @@
 // src/app/page.tsx
 
-import UserSession from "@/app/components/UserSession"
+import HomeScreen from "@/app/home/page"
 import { Inter } from "next/font/google"
 const inter = Inter({ subsets: ["latin"] })
 
 const HomePage = () => {
 	return (
 		<div className={inter.className}>
-			<UserSession />
+			<HomeScreen />
 		</div>
 	)
 }
