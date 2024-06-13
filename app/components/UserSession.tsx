@@ -5,13 +5,14 @@
 import { useEffect } from "react"
 import { useSession, signOut } from "next-auth/react"
 import { useRouter } from "next/navigation"
+import LoadingSpinner from "@/app/components/LoadingSpinner"
 
 const UserSession = () => {
 	const { data: session, status } = useSession()
 	const router = useRouter()
 
 	if (status === "loading") {
-		return <div>Loading...</div>
+		return <LoadingSpinner />
 	}
 
 	if (!session) {
