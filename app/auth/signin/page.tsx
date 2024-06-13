@@ -1,6 +1,8 @@
 "use client"
 import { signIn } from "next-auth/react"
 import { useState } from "react"
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth"
+import { auth } from "@/app/lib/firebaseConfig"
 
 const SignIn = () => {
 	const [loading, setLoading] = useState(false)
@@ -8,7 +10,7 @@ const SignIn = () => {
 	const handleSignIn = async (event: React.FormEvent) => {
 		event.preventDefault()
 		setLoading(true)
-		const res = await signIn("credentials", {
+		const res = await signIn("username", {
 			redirect: false,
 			username: (event.target as any).username.value,
 			password: (event.target as any).password.value
@@ -19,6 +21,22 @@ const SignIn = () => {
 			setLoading(false)
 		} else {
 			window.location.href = "/"
+		}
+	}
+
+	const handleGoogleSignIn = async () => {
+		const provider = new GoogleAuthProvider()
+
+		try {
+			const result = await signInWithPopup(auth, provider)
+			const res = await signIn("googlefirebase", {
+				redirect: false,
+				accessToken: result.user?.accessToken
+			})
+			console.log("User signed in:", result.user)
+			// window.location.href = "/"
+		} catch (error) {
+			console.log("error here", error)
 		}
 	}
 
@@ -69,6 +87,14 @@ const SignIn = () => {
 						{loading ? "Signing In..." : "Sign In"}
 					</button>
 				</form>
+				<div className="mt-6">
+					<button
+						onClick={handleGoogleSignIn}
+						className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors"
+					>
+						Sign in with Google
+					</button>
+				</div>
 				<p className="mt-6 text-sm text-gray-600">
 					Don't have an account?{" "}
 					<a

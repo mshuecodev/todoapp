@@ -2,6 +2,8 @@
 
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
+import GoogleProvider from "next-auth/providers/google"
+import { auth } from "@/app/lib/firebaseConfig"
 
 export const authOptions = {
 	providers: [
@@ -11,8 +13,10 @@ export const authOptions = {
 				username: { label: "Username", type: "text" },
 				password: { label: "Password", type: "password" }
 			},
-			authorize: async (credentials) => {
-				const user = { id: 1, name: "John Doe", email: "john@example.com" }
+			async authorize(credentials) {
+				console.log("credentials", credentials)
+				// Replace this with actual user authentication logic
+				const user = { id: 1, name: "Test User" } // Example user object
 				if (user) {
 					return user
 				} else {
