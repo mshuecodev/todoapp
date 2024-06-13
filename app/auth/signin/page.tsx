@@ -20,6 +20,7 @@ const SignIn = () => {
 		}
 	}, [])
 
+	// sign in using nextauth (as backend)
 	const handleSignIn = async (event: React.FormEvent) => {
 		event.preventDefault()
 		setLoading(true)
