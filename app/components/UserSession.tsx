@@ -15,17 +15,9 @@ const UserSession = () => {
 	}
 
 	if (!session) {
-		return <div>You are not authenticated. Please sign in.</div>
+		console.log("session", session)
+		router.push("/auth/signin")
 	}
-
-	console.log("session", status)
-
-	useEffect(() => {
-		console.log(session, status)
-		if (status === "unauthenticated") {
-			router.push("/auth/signin")
-		}
-	}, [status, router])
 
 	return (
 		<div>
