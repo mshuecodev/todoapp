@@ -1,21 +1,16 @@
 "use client"
 
 import Link from "next/link"
-import { useSession, signOut } from "next-auth/react"
-import { useRouter } from "next/navigation"
-import LoadingSpinner from "@/app/components/LoadingSpinner"
 
-export default function Home() {
-	const { data: session, status } = useSession()
-	const router = useRouter()
+import withAuth from "@/app/components/withAuth"
 
-	if (status === "loading") {
-		return <LoadingSpinner />
-	}
+function Home() {
+	const signOut = () => {
+		localStorage.removeItem("accessToken")
+		localStorage.removeItem("expirationTime")
+		localStorage.removeItem("refreshToken")
 
-	if (!session) {
-		console.log("session", session)
-		router.push("/auth/signin")
+		window.location.href = "/"
 	}
 	return (
 		<main className="flex min-h-screen items-center justify-center bg-green-50 p-8">
@@ -74,7 +69,7 @@ export default function Home() {
 					</ul>
 				</nav>
 				<button
-					onClick={() => signOut({ callbackUrl: "/" })}
+					onClick={signOut}
 					className="mt-8 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
 				>
 					Logout
@@ -83,3 +78,5 @@ export default function Home() {
 		</main>
 	)
 }
+
+export default withAuth(Home)

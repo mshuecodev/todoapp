@@ -1,11 +1,24 @@
 "use client"
 import { signIn } from "next-auth/react"
-import { useState } from "react"
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth"
+import { useState, useEffect } from "react"
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { auth } from "@/app/lib/firebaseConfig"
+import { useRouter } from "next/navigation"
 
 const SignIn = () => {
+	const router = useRouter()
 	const [loading, setLoading] = useState(false)
+
+	useEffect(() => {
+		setLoading(true)
+		const token = localStorage.getItem("accessToken")
+		if (!token) {
+			router.push("/auth/signin")
+		} else {
+			setLoading(false)
+			router.push("/")
+		}
+	}, [])
 
 	const handleSignIn = async (event: React.FormEvent) => {
 		event.preventDefault()
@@ -29,12 +42,15 @@ const SignIn = () => {
 
 		try {
 			const result = await signInWithPopup(auth, provider)
-			const res = await signIn("googlefirebase", {
-				redirect: false,
-				accessToken: result.user?.accessToken
-			})
-			console.log("User signed in:", result.user)
-			// window.location.href = "/"
+			let user = result.user
+			let userInfo = user.reloadUserInfo
+			let stsTokenManager = user.stsTokenManager
+
+			localStorage.setItem("accessToken", user.accessToken)
+			localStorage.setItem("expirationTime", stsTokenManager.expirationTime)
+			localStorage.setItem("refreshToken", stsTokenManager.refreshToken)
+
+			window.location.href = "/"
 		} catch (error) {
 			console.log("error here", error)
 		}
