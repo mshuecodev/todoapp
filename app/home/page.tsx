@@ -3,14 +3,22 @@
 import Link from "next/link"
 
 import withAuth from "@/app/components/withAuth"
+import { signOut } from "firebase/auth"
+import { auth } from "@/app/lib/firebaseConfig"
 
 function Home() {
-	const signOut = () => {
-		localStorage.removeItem("accessToken")
-		localStorage.removeItem("expirationTime")
-		localStorage.removeItem("refreshToken")
+	const doSignOut = () => {
+		signOut(auth)
+			.then(() => {
+				localStorage.removeItem("accessToken")
+				localStorage.removeItem("expirationTime")
+				localStorage.removeItem("refreshToken")
 
-		window.location.href = "/"
+				window.location.href = "/"
+			})
+			.catch((error) => {
+				alert("Signout Failed", error)
+			})
 	}
 	return (
 		<main className="flex min-h-screen items-center justify-center bg-green-50 p-8">
@@ -69,7 +77,7 @@ function Home() {
 					</ul>
 				</nav>
 				<button
-					onClick={signOut}
+					onClick={doSignOut}
 					className="mt-8 py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-opacity-75"
 				>
 					Logout

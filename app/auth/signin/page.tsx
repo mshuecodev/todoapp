@@ -48,7 +48,7 @@ const SignIn = () => {
 			let stsTokenManager = user.stsTokenManager
 
 			localStorage.setItem("accessToken", user.accessToken)
-			localStorage.setItem("expirationTime", stsTokenManager.expirationTime)
+			localStorage.setItem("expirationTime", stsTokenManager.expirationTime.toString())
 			localStorage.setItem("refreshToken", stsTokenManager.refreshToken)
 
 			window.location.href = "/"
