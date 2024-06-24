@@ -82,6 +82,14 @@ function Home() {
 								ALARM
 							</Link>
 						</li>
+						<li className="py-4">
+							<Link
+								className="hover:text-green-800"
+								href="/quizz"
+							>
+								QUIZZ
+							</Link>
+						</li>
 					</ul>
 				</nav>
 				<button
